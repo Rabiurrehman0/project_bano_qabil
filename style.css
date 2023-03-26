@@ -197,7 +197,7 @@ section{
 }
 
 .header .shopping-cart .box img{
-    
+    animation: slideInDown 1s ease-out 0.5s forwards;
     width: 30%;
 }
 
@@ -289,6 +289,8 @@ section{
 }
 
 .home{
+    animation: zoom-in 0.6s ease-in-out;
+    animation-play-state:running;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -502,6 +504,7 @@ section{
 
 
 .blogs .box-container{
+    
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
     gap: 1.5rem;
@@ -515,6 +518,7 @@ section{
 }
 
 .blogs .box-container .box img{
+    animation: zoomInDown 1s ease-out 0.5s forwards;
     height: 25rem;
     width: 100%;
     object-fit: cover;
@@ -562,6 +566,11 @@ section{
     color: var(--light-color);
     padding: .5rem 0;
     
+}
+
+.blogs.box-container.content{
+    animation: zoomInDown 1s ease-out 0.9s forwards;
+
 }
 
 .footer{
@@ -739,7 +748,7 @@ section{
               transform: scale(1);
     }
   }
-  
+ 
  
   @keyframes tracking-in-expand {
     0% {
@@ -772,4 +781,93 @@ section{
     }
   }
   
+  @keyframes zoom-in {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes slideInDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoomInDown {
+    0% {
+      transform: scale(0.1) translateY(-1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  
+  
  
+  .scroll-element {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 9999;
+  }
+  
+  .scroll-element.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-element span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .scroll-element.show:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  
+  @media screen and (max-width: 767px) {
+    .scroll-element {
+      display: none;
+    }
+  }
+  
+  /* Scroll animation */
+  
+  section {
+    min-height: 100vh;
+  }
+  
+  section:nth-of-type(even) {
+    background-color: #f2f2f2;
+  }
+  
+  section:nth-of-type(odd) {
+    background-color: #fff;
+  }
+   
+  
